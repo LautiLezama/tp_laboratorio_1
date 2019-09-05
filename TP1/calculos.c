@@ -39,8 +39,9 @@ float multiplicar(float num1, float num2)
 float factorial(float num1)
 {
     float factorial = 1;
+    int contador;
 
-    for(int contador = num1; contador > 0; contador --)
+    for(contador = num1; contador > 0; contador --)
     {
         factorial = factorial * contador;
     }
@@ -72,10 +73,12 @@ void calcular(float num1, float num2)
         case 1:
             num1 = pedirNum("\nIngrese el primer numero : ",num1);
             flagNum1 = 1;
+            resultadoF1 = 0;
             break;
         case 2:
             num2 = pedirNum("\nIngrese el segundo numero : ",num2);
             flagNum2 = 1;
+            resultadoF1 = 0;
             break;
         case 3:
             if(flagNum1 == 0 || flagNum2 == 0)
@@ -98,9 +101,12 @@ void calcular(float num1, float num2)
             {
                 printf("\nAl menos uno de los dos numeros no fue ingresado. Ingrese los 2 numeros para calcular.\n");
             }
+            else if(resultadoF1 == 0)
+            {
+                printf("\nHay numeros modificados sin calcular, calcula para informar.\n");
+            }
             else
             {
-
 
                 printf("\n%f + %f = %f",num1,num2, resultadoS);
                 printf("\n%f - %f = %f",num1,num2, resultadoR);
