@@ -68,7 +68,8 @@ int findEmployeeById(Employee* list, int len)
         {
             if(list[i].isEmpty == FALSE)
             {
-                return i;
+                r = i;
+                break;
             }
 
         }
@@ -220,6 +221,7 @@ int flagEmployee(Employee* list, int len)
         if(list[i].isEmpty == FALSE)
         {
             r = 0;
+            break;
         }
     }
 
@@ -413,7 +415,6 @@ int employeesWithMoreSalary(Employee* list, int len, int avg)
     }
     return count;
 }
-
 
 
 

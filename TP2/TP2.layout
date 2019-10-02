@@ -9,12 +9,12 @@
 	</File>
 	<File name="ArrayEmployees.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8935" topLine="292" />
+			<Cursor1 position="8409" topLine="368" />
 		</Cursor>
 	</File>
 	<File name="ArrayEmployees.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="857" topLine="11" />
+			<Cursor1 position="5376" topLine="124" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
