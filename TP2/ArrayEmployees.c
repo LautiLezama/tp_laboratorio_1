@@ -88,7 +88,7 @@ int removeEmployee(Employee* list, int len)
     if(i != -1)
     {
         printf("\n\nSeleccione s para confirmar la accion: ");
-        respuesta = getche();
+        respuesta = getchar();
         if(respuesta == 's')
         {
             list[i].isEmpty = TRUE;
@@ -202,7 +202,7 @@ int printEmployees(Employee* list, int len)
         {
             if(list[i].isEmpty == FALSE)
             {
-                printf("%02d\t%02d\t%22s\t\t%22s\t\t%f\n", list[i].id,list[i].sector,list[i].name,list[i].lastName,list[i].salary);
+                printf("%04d\t%02d\t%22s\t\t%22s\t\t%f\n", list[i].id,list[i].sector,list[i].name,list[i].lastName,list[i].salary);
             }
         }
         r = 0;
@@ -251,9 +251,25 @@ void menuEmployees(Employee* listEmployees, int len, int idNumber, char name[], 
             fflush(stdin);
             printf("\nIngrese el nombre del empleado : ");
             name = enterString(name);
+            firstLetterMayus(name);
+            r = onlyLetters(name);
+            if(r==0)
+            {
+                printf("\nSolo se permiten letras.\n");
+                break;
+            }
+            toLowerCase(name);
             fflush(stdin);
             printf("\n\nIngrese el apellido del empleado : ");
             lastName = enterString(lastName);
+            firstLetterMayus(lastName);
+            r = onlyLetters(lastName);
+            if(r==0)
+            {
+                printf("Solo se permiten letras.\n");
+                break;
+            }
+            toLowerCase(lastName);
             printf("\n\nIngrese el salario del empleado : ");
             salary = enterFloat(salary);
             printf("\n\nIngrese el sector del empleado : ");
@@ -388,7 +404,7 @@ float averageSalary(Employee* list, int len)
     float accum = 0;
     int count = 0;
     float average = 0;
-    for(i=0;i<len;i++)
+    for(i=0; i<len; i++)
     {
         if(list[i].isEmpty == FALSE)
         {
@@ -406,7 +422,7 @@ int employeesWithMoreSalary(Employee* list, int len, int avg)
 {
     int i;
     int count = 0;
-    for(i=0;i<len;i++)
+    for(i=0; i<len; i++)
     {
         if(list[i].isEmpty == FALSE && list[i].salary > avg)
         {
@@ -416,6 +432,41 @@ int employeesWithMoreSalary(Employee* list, int len, int avg)
     return count;
 }
 
+int onlyLetters(char string1[])
+{
+    int i;
+    int largo;
+    int r = -1;
+    largo = strlen(string1);
+    for(i=1; i<largo; i++)
+    {
+        if(((string1[i]<97 && string1[i]>90) || string1[i]>122) || string1[i]<65)
+        {
+            r = 0;
+            return r;
+        }
+    }
+    return r;
+}
 
+void toLowerCase(char string1[])
+{
+    int i;
+    int largo;
+    largo = strlen(string1);
+    for(i=1; i<largo; i++)
+    {
+        if(string1[i]>64 && string1[i]<91)
+        {
+            string1[i] = string1[i]+32;
+        }
+    }
+}
 
-
+void firstLetterMayus(char string1[])
+{
+    if(string1[0] > 96 && string1[0] < 123)
+    {
+        string1[0] = string1[0] - 32;
+    }
+}

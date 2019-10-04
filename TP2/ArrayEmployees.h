@@ -6,7 +6,7 @@
 #define ELEMENTS 1000
 
 
-struct
+typedef struct
 {
     int id;
     char name[51];
@@ -14,7 +14,7 @@ struct
     float salary;
     int sector;
     int isEmpty;
-} typedef Employee;
+}Employee;
 
 /** \brief Funcion encargada de iniciar el campo "isEmpty" de los empleados en TRUE, afirmando que los slots estan vacios.
  *
@@ -144,6 +144,28 @@ float averageSalary(Employee*, int);
  *
  */
 int employeesWithMoreSalary(Employee*, int, int);
+
+/** \brief Funcion encargada de, en caso de que la primera letra sea minuscula, pasarla a mayuscula.
+ *
+ * \param char[] String ingresado(Nombre o apellido).
+ * \return void
+ *
+ */
+void firstLetterMayus(char[]);
+/** \brief Funcion encargada de validar solo la presencia de numeros en el string.
+ *
+ * \param [] char  String ingresado(Nombre o apellido).
+ * \return int
+ *
+ */
+int onlyLetters(char []);
+/** \brief Funcion encargada de pasar todas las letras que no sean la primera a minuscula.
+ *
+ * \param [] char String ingresado(Nombre o apellido).
+ * \return void
+ *
+ */
+void toLowerCase(char []);
 
 
 
