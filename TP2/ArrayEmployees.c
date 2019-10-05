@@ -334,34 +334,41 @@ void menuEmployees(Employee* listEmployees, int len, int idNumber, char name[], 
         case 4:
             if(flagEmployee(listEmployees, ELEMENTS) == 0)
             {
-                r = sortEmployees(listEmployees, ELEMENTS);
-                if(r==0)
+                printf("\n\nElige lo que quieras informar.\n\n");
+                printf("\n1.Listado de los empleados ordenados alfabéticamente por Apellido y Sector.");
+                printf("\n2.Total y promedio de los salarios, y cuántos empleados superan el salario promedio.");
+                printf("\nElija la opcion : ");
+                scanf("%d", &option);
+                switch(option)
                 {
-                    r = printEmployees(listEmployees, ELEMENTS);
-                    if(r == 0)
+                case 1:
+                    r = sortEmployees(listEmployees, ELEMENTS);
+                    if(r==0)
                     {
-                        average = averageSalary(listEmployees, ELEMENTS);
-                        printf("\n\nEl promedio de los salarios es : %f", average);
-                        employeesAverage = employeesWithMoreSalary(listEmployees, ELEMENTS, average);
-                        if(employeesAverage == 1)
+                        r = printEmployees(listEmployees, ELEMENTS);
+                        if(r == 0)
                         {
-                            printf("\nSolamente un empleado supera el promedio salarial.\n\n");
+                            printf("\n\nEmpleados ordenados y mostrados exitosamente.\n\n");
                         }
                         else
                         {
-                            printf("\nHay %d empleados que superan el promedio salarial.\n\n", employeesAverage);
+                            printf("\n\nNo se pudieron mostrar a los empleados.\n\n");
                         }
-
-                        printf("\n\nEmpleados ordenados y mostrados exitosamente.\n\n");
+                    }
+                    break;
+                case 2:
+                    average = averageSalary(listEmployees, ELEMENTS);
+                    printf("\n\nEl promedio de los salarios es : %f", average);
+                    employeesAverage = employeesWithMoreSalary(listEmployees, ELEMENTS, average);
+                    if(employeesAverage == 1)
+                    {
+                        printf("\nSolamente un empleado supera el promedio salarial.\n\n");
                     }
                     else
                     {
-                        printf("\n\nNo se pudieron mostrar a los empleados.\n\n");
+                        printf("\nHay %d empleados que superan el promedio salarial.\n\n", employeesAverage);
                     }
-                }
-                else
-                {
-                    printf("\n\nNo se pudo realizar el informe.\n\n");
+                    break;
                 }
             }
             else
