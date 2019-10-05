@@ -150,7 +150,7 @@ int modifyEmployee(Employee* list, int len)
     return r;
 }
 
-int sortEmployees(Employee* list, int len)
+int sortEmployees(Employee* list, int len, int order)
 {
     Employee auxEmployee;
     int i;
@@ -159,25 +159,13 @@ int sortEmployees(Employee* list, int len)
 
     if((len > 0 && len < 1001) && list != NULL)
     {
-        for(i=0; i<len-1; i++) // For para ordenar por sector.
+        if(order == 1)
         {
-            for(j=i+1; j<len; j++)
+            for(i=0; i<len-1; i++) // For para ordenar por sector.
             {
-                if(list[i].isEmpty == FALSE && list[i].sector > list[j].sector)
+                for(j=i+1; j<len; j++)
                 {
-                    auxEmployee = list[i];
-                    list[i] = list[j];
-                    list[j] = auxEmployee;
-                }
-            }
-        }
-        for(i=0; i<len-1; i++) // For para ordenar por apellido con los sectores ordenados.
-        {
-            for(j=i+1; j<len; j++)
-            {
-                if(list[i].isEmpty == FALSE && list[i].sector == list[j].sector)
-                {
-                    if(strcmp(list[i].lastName, list[j].lastName) > 0)
+                    if(list[i].isEmpty == FALSE && list[i].sector > list[j].sector)
                     {
                         auxEmployee = list[i];
                         list[i] = list[j];
@@ -185,7 +173,53 @@ int sortEmployees(Employee* list, int len)
                     }
                 }
             }
+            for(i=0; i<len-1; i++) // For para ordenar por apellido con los sectores ordenados.
+            {
+                for(j=i+1; j<len; j++)
+                {
+                    if(list[i].isEmpty == FALSE && list[i].sector == list[j].sector)
+                    {
+                        if(strcmp(list[i].lastName, list[j].lastName) > 0)
+                        {
+                            auxEmployee = list[i];
+                            list[i] = list[j];
+                            list[j] = auxEmployee;
+                        }
+                    }
+                }
+            }
         }
+        else
+        {
+            for(i=0; i<len-1; i++) // For para ordenar por sector.
+            {
+                for(j=i+1; j<len; j++)
+                {
+                    if(list[i].isEmpty == FALSE && list[i].sector < list[j].sector)
+                    {
+                        auxEmployee = list[i];
+                        list[i] = list[j];
+                        list[j] = auxEmployee;
+                    }
+                }
+            }
+            for(i=0; i<len-1; i++) // For para ordenar por apellido con los sectores ordenados.
+            {
+                for(j=i+1; j<len; j++)
+                {
+                    if(list[i].isEmpty == FALSE && list[i].sector == list[j].sector)
+                    {
+                        if(strcmp(list[i].lastName, list[j].lastName) < 0)
+                        {
+                            auxEmployee = list[i];
+                            list[i] = list[j];
+                            list[j] = auxEmployee;
+                        }
+                    }
+                }
+            }
+        }
+
         r = 0;
     }
     return r;
@@ -234,6 +268,7 @@ void menuEmployees(Employee* listEmployees, int len, int idNumber, char name[], 
     int r;
     float average;
     int employeesAverage;
+    int order;
 
 
     do
@@ -335,14 +370,19 @@ void menuEmployees(Employee* listEmployees, int len, int idNumber, char name[], 
             if(flagEmployee(listEmployees, ELEMENTS) == 0)
             {
                 printf("\n\nElige lo que quieras informar.\n\n");
-                printf("\n1.Listado de los empleados ordenados alfabéticamente por Apellido y Sector.");
-                printf("\n2.Total y promedio de los salarios, y cuántos empleados superan el salario promedio.");
+                printf("\n1.Listado de los empleados ordenados alfabeticamente por Apellido y Sector.");
+                printf("\n2.Total y promedio de los salarios, y cuantos empleados superan el salario promedio.");
                 printf("\nElija la opcion : ");
                 scanf("%d", &option);
                 switch(option)
                 {
                 case 1:
-                    r = sortEmployees(listEmployees, ELEMENTS);
+                    printf("Quiere ordenar de manera : \n");
+                    printf("1.Ascendente.\n");
+                    printf("2.Descendente.\n");
+                    printf("Elija una opcion : ");
+                    scanf("%d", &order);
+                    r = sortEmployees(listEmployees, ELEMENTS, order);
                     if(r==0)
                     {
                         r = printEmployees(listEmployees, ELEMENTS);

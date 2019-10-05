@@ -60,7 +60,7 @@ int removeEmployee(Employee*, int);
  * \return int Retorna 0 en caso de que se hayan ordenado correctamente, -1 en caso de que haya un error.
  *
  */
-int sortEmployees(Employee*, int);
+int sortEmployees(Employee*, int, int);
 /** \brief Funcion encargada de imprimir la lista de empleados ordenados de forma encolumnada.
  *
  * \param Employee* Puntero de Array de empleados.
