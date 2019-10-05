@@ -88,7 +88,7 @@ int removeEmployee(Employee* list, int len)
     if(i != -1)
     {
         printf("\n\nSeleccione s para confirmar la accion: ");
-        respuesta = getchar();
+        respuesta = getche();
         if(respuesta == 's')
         {
             list[i].isEmpty = TRUE;
@@ -309,6 +309,12 @@ void menuEmployees(Employee* listEmployees, int len, int idNumber, char name[], 
             salary = enterFloat(salary);
             printf("\n\nIngrese el sector del empleado : ");
             sector = enterInt(sector);
+            if(r==0)
+            {
+                printf("Solo se permiten numeros en este campo.\n");
+                fflush(stdin);
+                break;
+            }
             r = addEmployee(listEmployees, ELEMENTS, idNumber, name, lastName, salary, sector);
             if(r == 0)
             {
@@ -394,6 +400,10 @@ void menuEmployees(Employee* listEmployees, int len, int idNumber, char name[], 
                         {
                             printf("\n\nNo se pudieron mostrar a los empleados.\n\n");
                         }
+                    }
+                    else
+                    {
+                        printf("\n\nNo se pudieron ordenar a los empleados.\n\n");
                     }
                     break;
                 case 2:
@@ -517,3 +527,4 @@ void firstLetterMayus(char string1[])
         string1[0] = string1[0] - 32;
     }
 }
+
